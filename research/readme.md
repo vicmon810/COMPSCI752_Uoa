@@ -11,6 +11,7 @@
 - Evolution of Cryptographic Techniques
 - Random Number Generation and Cryptography
 - Foundations of Hash Functions and Their Applications
+- Cryptographic Protocols for Secure Communication
 
 
 # relate reading: 
