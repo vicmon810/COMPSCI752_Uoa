@@ -5,6 +5,7 @@ import spacy
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.tag import pos_tag
 from collections import defaultdict
+from nltk.stem import WordNetLemmatizer
 
 nltk.download('averaged_perceptron_tagger')
 nltk.download('punkt')
@@ -12,12 +13,14 @@ nltk.download('punkt')
 text = "I received my PhD in Information Systems from Massey University in 2005. Then I was lecturing in Information Systems at Massey University, Palmerston North, until 2007. From 2008 until 2011, I was Associate Professor at the School of Information Management at the Victoria University of Wellington. In 2012, I joined the Department of Computer Science at the University of Auckland. I was awarded a Doctor of Science degree from the University of Auckland in 2015.I received the Chris Wallace Award for outstanding research contributions to Australia and New Zealand in 2013, awarded by the Computing Research and Education Association of Australasia (CORE). This is the most prestigious award for mid-career computer scientists in Australasia. The prize is available to academics for post-PhD research undertaken in a university or research institution in Australia or New Zealand. The research must include a notable breakthrough or contribution of particular significance. At most one award is made each year. Currently, I am an editorial board member of the journals Information Systems, Data and Knowledge Engineering, and Proceedings of the VLDB Endowment. I am reviewing extensively for other journals and conferences including ACM SIGMOD, ACM Transactions on Database System, IEEE ICDE, IEEE Transactions on Knowledge and Data Engineering, VLDB and the VLDB Journal."
 
 text = text.lower()
-
+lemmatizer = WordNetLemmatizer()
+text = lemmatizer(text)
 special_terms = ["PhD", "CORE", "VLDB", "ACM","SIGMOD", "ACM", "IEEE", "ICDE"]
 
 for term in special_terms:
     pattern = re.compile(r'\b' + re.escape(term.lower()) + r'\b')
     text = pattern.sub(term, text)
+ 
 
 sentences = sent_tokenize(text)
 entities = set()
